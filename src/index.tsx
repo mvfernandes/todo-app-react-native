@@ -1,15 +1,15 @@
 import React from 'react';
-import {SafeAreaView, ScrollView, StatusBar, View, Text} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
+import {useAppContext} from './contexts/app';
+import {App} from './pages/app';
+import {Login} from './pages/login';
 
-export const App = () => {
+export const Main = () => {
+  const ctx = useAppContext();
   return (
-    <SafeAreaView>
-      <StatusBar barStyle={'dark-content'} />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={{}}>
-          <Text>App</Text>
-        </View>
-      </ScrollView>
+    <SafeAreaView style={{backgroundColor: '#6a0ce4', flex: 1}}>
+      <StatusBar barStyle={'light-content'} backgroundColor="#6a0ce4" />
+      {ctx.state.logged ? <App /> : <Login />}
     </SafeAreaView>
   );
 };
