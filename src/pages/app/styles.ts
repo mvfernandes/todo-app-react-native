@@ -80,3 +80,12 @@ export const Input = styled.TextInput`
   font-size: 16px;
   flex: 1;
 `;
+
+export const TextError = styled.Text`
+  width: 100%;
+  color: #fff;
+  text-align: center;
+
+  font-size: 15px;
+  padding-bottom: 10px;
+`;

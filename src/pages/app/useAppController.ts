@@ -11,6 +11,14 @@ export default function useAppController() {
   const {get, post, put, del} = useRequest();
   const [todo, setTodo] = useState('');
   const [todos, setTodos] = useState<TodoType[]>([]);
+  const [error, setError] = useState('');
+
+  const makeError = (message: string) => {
+    setError(message);
+    setTimeout(() => {
+      setError('');
+    }, 2500);
+  };
 
   useEffect(() => {
     let mounted = true;
@@ -30,6 +38,8 @@ export default function useAppController() {
       if (response.success) {
         setTodos(prev => [{id: response.body.id, todo, done: false}, ...prev]);
         setTodo('');
+      } else {
+        makeError(response.message || 'Ocorreu algum erro');
       }
     }
   }
@@ -71,5 +81,6 @@ export default function useAppController() {
     removeTodo,
     logout,
     getTodos,
+    error
   };
 }

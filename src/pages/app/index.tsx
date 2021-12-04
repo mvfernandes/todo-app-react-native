@@ -12,6 +12,7 @@ import {
   Input,
   ButtonSend,
   ButtonLogout,
+  TextError,
 } from './styles';
 import useAppController from './useAppController';
 
@@ -25,6 +26,7 @@ export const App = () => {
     removeTodo,
     logout,
     getTodos,
+    error,
   } = useAppController();
   return (
     <>
@@ -60,6 +62,7 @@ export const App = () => {
           )}
         />
       </Container>
+      {!!error && <TextError>{error}</TextError>}
       <Footer>
         <Input
           placeholder="Qual a próxima tarefa?"
